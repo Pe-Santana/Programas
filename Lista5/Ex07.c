@@ -9,7 +9,7 @@ int main()
 
     for (int i = 0; i < 5; i++)
     {
-        printf ("Entre com a not do aluno %i: ",i+1);
+        printf ("Entre com a nota do aluno %i: ",i+1);
         scanf ("%i",&N[i]);
 
         if (N[i] > maior)
