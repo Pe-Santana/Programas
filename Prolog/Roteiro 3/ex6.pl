@@ -1,5 +1,4 @@
-subconjunto([],[]).
-subconjunto([X],[X|YS]).
-subconjunto([X|XS], [Y|YS]):-
-    subconjunto(X,YS),
-    subconjunto(XS,[X|YS]).
+superconjunto([],[]).
+
+superconjunto([X|XS], [Y|YS]):-
+    subset([Y|YS], [X|XS]).
