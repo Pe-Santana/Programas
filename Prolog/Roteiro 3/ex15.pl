@@ -1,7 +1,8 @@
-prodEsc([],[],_).
+prodEsc([],[],0).
 
-prodEsc([X|XS],[Y|YS],[N|NS]):-
-    N is *(X,Y),
-    prodEsc(XS,YS,NS).
+prodEsc([X|XS],[Y|YS],N):-
+    prodEsc(XS,YS,G),
+    N is X*Y+G.
+
 
 
