@@ -1,12 +1,13 @@
 #include <stdio.h>
 
-struct telefones
+typedef struct 
 {
-    int DDD,numero;
-};
+    int DDD[3],numero[3];
+}telefones;
 
-int main (){
-
+void telefones (){
+    
+     
 
 
 
