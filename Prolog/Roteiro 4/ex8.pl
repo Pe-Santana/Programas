@@ -1,5 +1,12 @@
-diferença([],_,[]).
-diferença(X,[],X).
+%d)
 
-diferença([X|XS],[Y|YS],G):-
-    
+diferenca([],_,[]).
+
+diferenca([X|XS],[X|YS],G):-
+   diferenca(XS,YS,G).
+
+diferenca([X|XS],[_|YS],[X|T]):-
+    diferenca(XS,YS,T).
+
+diferenca([X|_],[_|YS],[X|T]):-
+    diferenca(X,YS,T).
