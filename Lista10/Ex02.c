@@ -21,4 +21,26 @@ int main()
 
     printf ("O Valor de a eh :  %i\n", a);
 
+    //c)
+
+    int val[5];
+
+    val[2] = 10;
+
+    int *pVet;
+
+    pVet = &val[2];
+
+
+    printf ("Atribua um valor para o val[0] : ");
+    scanf("%i", pVet);
+
+    printf("o valor para val[2] eh : %i", val[2]);
+
+    //d)
+
+    //e)
+
+
+
 }
