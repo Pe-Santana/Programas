@@ -30,28 +30,28 @@ int main()
 
     }
     
-    cima = &numeros[0];
-    baixo = &numeros[0];
-    esquerda = &numeros[0];
-    direita = &numeros[0];
+    cima = &numeros[0].Y;
+    baixo = &numeros[0].Y;
+    esquerda = &numeros[0].X;
+    direita = &numeros[0].X;
     
     for (int i = 0; i < n; i++)
     {
-        if (numeros[i+1].Y > numeros[i].Y)
+        if (*cima < numeros[i].Y)
         {
-            cima = &numeros[i+1];
+            cima = &numeros[i].Y;
         }
-        if (numeros[i+1].Y < numeros[i].Y)
+        if (*cima > numeros[i].Y)
         {
-            baixo = &numeros[i+1];
+            baixo = &numeros[i].Y;
         }
-        if (numeros[i+1].X > numeros[i].X)
+        if (*direita < numeros[i].X)
         {
-            direita = &numeros[i+1];
+            direita = &numeros[i].X;
         }
-        if (numeros[i+1].X < numeros[i].X)
+        if (*esquerda > numeros[i].X)
         {
-            esquerda = &numeros[i+1];
+            esquerda = &numeros[i].Y;
         }
         
 
@@ -68,7 +68,10 @@ int main()
         }
         
     }
-    printf("O ponto mais a cima e (%i)  ",cima);
+    printf("\nO ponto mais a cima e (%i)  ",*cima);
+    printf("\nO ponto mais a baixo e (%i)  ",*baixo);
+    printf("\nO ponto mais a direita e (%i)  ",*direita);
+    printf("\nO ponto mais a esquerda e (%i)  ",*esquerda);
 
     free(numeros);
 }
