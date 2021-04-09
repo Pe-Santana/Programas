@@ -1,8 +1,8 @@
-s --> aeb,ced.
-aeb --> [].
-aeb --> a,aeb,b.
-ced --> [].
-ced --> c,ced,d.
+s --> a,s,d.
+s --> bec.
+
+bec --> [].
+bec --> b,bec,c.
 a --> [a].
 b --> [b,b].
 c --> [c,c].
