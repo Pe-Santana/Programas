@@ -1,19 +1,21 @@
-f(X) :- X=p,!.
-f(X) :- !,X=q.
+f(X) :- X=p.
+f(X) :- X=q,!.
 f(X) :- X=r.
 
 /*
 ?- f(p).
-true.
+true ;
+false.
 
 ?- f(q).
 true.
 
 ?- f(r).
-false.
+true.
 
 ?- f(X).
-X = p.
+X = p ;
+X = q.
 
 
 */

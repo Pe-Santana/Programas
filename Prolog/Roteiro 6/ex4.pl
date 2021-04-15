@@ -1,5 +1,5 @@
 termoaterrado(X):-
-    nonvar(X).
+    ground(X).
 
-termoaterrado(X):-
-    termoaterrado(X).
+
+
