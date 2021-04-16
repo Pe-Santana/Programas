@@ -1,7 +1,6 @@
 :- op(300,xfx,h).
 
-2 h 15.
-1 h 50.
+ X h Y :- number(X),number(Y).
 
 soma_hora(H1X h H1Y,H2X h H2Y,S1 h S2):- 
     S1p is H1X +H2X,
