@@ -10,3 +10,10 @@ int mat2D_escreve (TMat2D *mat, double valor, int lin, int col);
 int mat2D_acessa (TMat2D *mat, double *valor, int lin, int col);
 
 int mat2D_aleatorio (TMat2D *mat,double MAX);
+
+int  mat2D_soma(TMat2D *mat, TMat2D *mat2, TMat2D *somado);
+
+int mat2D_multMatrizes(TMat2D *mat, TMat2D *mat2, TMat2D *mult);
+
+int mat2D_multint(TMat2D *mat, int val);
+
