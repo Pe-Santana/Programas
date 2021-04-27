@@ -17,3 +17,9 @@ int mat2D_multMatrizes(TMat2D *mat, TMat2D *mat2, TMat2D *mult);
 
 int mat2D_multint(TMat2D *mat, int val);
 
+int mat2D_traco(TMat2D *mat, double *traco);
+
+int mat2D_somaColunas(TMat2D *mat, double *vet);
+
+int mat2D_somaLinhas(TMat2D *mat, double *vet);
+

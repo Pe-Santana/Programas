@@ -98,7 +98,7 @@ int mat2D_aleatorio(TMat2D *mat, double MAX)
     }
 }
 
-int  mat2D_soma(TMat2D *mat, TMat2D *mat2, TMat2D *somado)
+int mat2D_soma(TMat2D *mat, TMat2D *mat2, TMat2D *somado)
 {
     if (mat == NULL || mat2 == NULL)
     {
@@ -116,18 +116,19 @@ int  mat2D_soma(TMat2D *mat, TMat2D *mat2, TMat2D *somado)
     return 0;
 }
 
-int mat2D_multMatrizes(TMat2D *mat, TMat2D *mat2, TMat2D *multi){
-    
+int mat2D_multMatrizes(TMat2D *mat, TMat2D *mat2, TMat2D *multi)
+{
+
     if (mat->nl != mat2->nc || mat == NULL || mat2 == NULL || multi == NULL)
     {
-       return -1;
-    }else
+        return -1;
+    }
+    else
     {
         int i, j, k;
-        int p1,p2,p3;
+        int p1, p2, p3;
 
         double final = 0;
-
 
         for (i = 0; i < mat->nl; i++)
         {
@@ -135,24 +136,18 @@ int mat2D_multMatrizes(TMat2D *mat, TMat2D *mat2, TMat2D *multi){
             {
                 for (k = 0; k < mat2->nc; k++)
                 {
-                    p1 = mat->nl*k + i;
-                    p2 = mat->nl*j + k;
+                    p1 = mat->nl * k + i;
+                    p2 = mat2->nl * j + k;
 
-                    final= final+(mat->data[p1]*mat2->data[p2]);
+                    final += mat->data[p1] * mat2->data[p2];
                 }
-                p3 = j*multi->nl+i;
+                p3 = j * multi->nl + i;
                 multi->data[p3] = final;
-                final=0;                
-
+                final = 0;
             }
-        
         }
         return 0;
     }
-    
-    
-    
-
 }
 
 int mat2D_multint(TMat2D *mat, int val)
@@ -172,6 +167,77 @@ int mat2D_multint(TMat2D *mat, int val)
         {
             mat->data[i] = mat->data[i] * val;
         }
-        return 0; 
+        return 0;
+    }
+}
+
+int mat2D_traco(TMat2D *mat, double *traco)
+{
+
+    if (mat == NULL || mat->nl != mat->nc)
+    {
+        return -1;
+    }
+    else
+    {
+
+        int tamanho, proximo;
+        tamanho = mat->nl * mat->nc;
+        *traco = 0;
+        proximo = mat->nl + 1;
+        for (int i = 0; i < tamanho; i += proximo)
+        {
+            (*traco) += mat->data[i];
+        }
+        return 0;
+    }
+}
+
+int mat2D_somaColunas(TMat2D *mat, double *vet)
+{
+    int i,l=0,Nc=0;
+    
+        if (mat == NULL )
+    {
+        return -1;
+    }
+    else
+    {
+    for (i = 0; i < mat->nc; i++)
+    {
+        for (l ; l < mat->nc+Nc; l++)
+        {
+            vet[i] += mat->data[l];
+
+        }
+        Nc+= mat->nc;
+    }
+    return 0;
+    }
+}
+int mat2D_somaLinhas(TMat2D *mat, double *vet)
+{
+    int i,l=0,Nl=0;
+    
+        if (mat == NULL )
+    {
+        return -1;
+    }
+    else
+    {
+    for (i = 1; i < mat->nl+1; i++)
+    {
+        while (Nl<mat->nc)
+        {
+            vet[i-1]+= mat->data[l];
+
+            l+=mat->nl;
+            Nl++;
+        }
+        Nl=0;
+        l=i;
+
+    }
+    return 0;
     }
 }

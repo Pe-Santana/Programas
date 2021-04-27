@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "TMat2D.h"
 
 int mostraMat (TMat2D *a,int l, int c, double *valor){
@@ -8,7 +9,7 @@ int mostraMat (TMat2D *a,int l, int c, double *valor){
         for (j = 0; j < c; j++)
         {
             mat2D_acessa(a, valor, i, j);
-            printf("%.1lf ", *valor);
+            printf("%5.1lf ", *valor);
         }
         printf("\n");
     }    
@@ -104,7 +105,36 @@ int main()
     
     mostraMat(p,l,c,&valor);
 
+    //Traco da matriz:
+    double traco;
+    mat2D_traco(p,&traco);
+    printf("O traco da matriz A e:  %.1lf\n", traco);
 
+    //soma das linhas:
+    double *somaL;
+    somaL = calloc(l,sizeof(double));
+    
+    mat2D_somaLinhas(p,somaL);
+
+    printf("As soma das Linhas sao:");
+    for (int i = 0; i < l; i++)
+    {
+      printf(" %.1lf ", somaL[i]);
+    }
+    printf("\n");
+
+    //soma das colunas:
+    double *somaC;
+    somaC = calloc(c,sizeof(double));
+    
+    mat2D_somaColunas(p,somaC);
+
+    printf("As soma das Colunas sao:");
+    for (int i = 0; i < l; i++)
+    {
+      printf(" %.1lf ", somaC[i]);
+    }
+    
     //liberar memoria:
     mat2D_clear(p);
     mat2D_clear(q);

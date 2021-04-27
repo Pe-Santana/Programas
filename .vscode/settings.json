@@ -1,6 +1,9 @@
 {
     "files.associations": {
         "cmath": "cpp",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "tmat2d.h": "c",
+        "stdlib.h": "c",
+        "tlist.h": "c"
     }
 }
