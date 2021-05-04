@@ -10,6 +10,8 @@ typedef struct Lista Lista;
 
 Lista *cria_lista(int n);
 
+int aumenta_lista(Lista *l);
+
 int libera_lista(Lista *l);
 
 int insere_lista_final(Lista *l, aluno a);
@@ -37,8 +39,6 @@ int tamanho_lista(Lista *l);
 int lista_cheia(Lista *l);
 
 int lista_vazia(Lista *l);
-
-int aumenta_lista(Lista *l);
 
 int compactar_lista(Lista *l);
 

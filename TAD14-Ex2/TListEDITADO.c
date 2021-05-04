@@ -6,7 +6,7 @@
 struct Lista
 {
     int qtd;
-    struct aluno *dados;
+    aluno *dados;
     int val_inicial;
     int val_max;
 };
@@ -23,8 +23,42 @@ Lista *cria_lista(int n)
         l->val_inicial = n;
         l->val_max = n;
         l->dados = malloc(n * sizeof(aluno));
-        printf("acabate");
         return l;
+    }
+}
+
+int aumenta_lista(Lista *l)
+{
+
+    if (l == NULL)
+    {
+        return -1;
+    }
+    else
+    {
+        l->dados = realloc(l->dados, (l->val_inicial + l->val_max) * sizeof(aluno));
+        l->val_max += l->val_inicial;
+        return 0;
+    }
+}
+
+int compactar_lista(Lista *l)
+{
+
+    if (l == NULL)
+    {
+        return -1;
+    }
+    else
+    {
+
+        int tam;
+
+
+        tam = ceil((double)(l->qtd) / (double)l->val_inicial) * l->val_inicial;
+        l->dados = realloc(l->dados, tam * sizeof(aluno));
+        l->val_max = tam;
+        return 0;
     }
 }
 
@@ -44,20 +78,6 @@ int libera_lista(Lista *l)
     }
 }
 
-int aumenta_lista(Lista *l)
-{
-
-    if (l == NULL)
-    {
-        return -1;
-    }
-    else
-    {
-        l->dados = realloc(l->dados, (l->val_inicial + l->val_max) * sizeof(aluno));
-        l->val_max = l->val_inicial + l->val_max;
-        return 0;
-    }
-}
 
 int insere_lista_final(Lista *l, aluno a)
 {
@@ -65,7 +85,7 @@ int insere_lista_final(Lista *l, aluno a)
     {
         return -1;
     }
-    if (l->qtd == l->val_max)
+    else if (l->qtd == l->val_max)
     {
         aumenta_lista(l);
         l->dados[l->qtd] = a;
@@ -87,7 +107,7 @@ int insere_lista_inicio(Lista *l, aluno a)
     {
         return -1;
     }
-    if (l->qtd == l->val_max)
+    else if (l->qtd == l->val_max)
     {
         aumenta_lista(l);
         for (int i = l->qtd - 1; i >= 0; i--)
@@ -131,7 +151,7 @@ int consulta_lista_mat(Lista *l, int mat, aluno *a)
     {
         return -1;
     }
-    int i;
+    int i=0;
 
     while (i < l->qtd && l->dados[i].matricula != mat)
     {
@@ -144,7 +164,7 @@ int consulta_lista_mat(Lista *l, int mat, aluno *a)
     }
     else
     {
-
+        printf("acabate");
         *a = l->dados[i];
         return 0;
     }
@@ -348,24 +368,6 @@ int imprime_lista(Lista *l)
     return 0;
 }
 
-int compactar_lista(Lista *l)
-{
-
-    if (l == NULL)
-    {
-        return -1;
-    }
-    else
-    {
-
-        int tam;
-        tam = ceil(l->qtd / (float)l->val_inicial) * l->val_inicial;
-        l->dados = realloc(l->dados, tam * sizeof(aluno));
-        l->val_max = tam;
-
-        return 0;
-    }
-}
 
 int tam_alocado_lista(Lista *l)
 {
