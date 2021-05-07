@@ -56,5 +56,41 @@ int list_push_front(TLinkedList *l, aluno a)
     else
     {
         list_node *node;
+        node = malloc(sizeof(list_node));
+    }
+}
+
+int list_push_back(TLinkedList *l, aluno a)
+{
+
+    if (l == NULL)
+    {
+        return INVALID_NULL_POINTER;
+    }
+    else
+    {
+        list_node *node;
+        node = malloc(sizeof(list_node));
+        if (node == NULL)
+        {
+            return OUT_OF_MEMORY;
+        }
+        node->data = a;
+        node->next = NULL;
+        if (l->head == NULL)
+        {
+            l->head = node;
+        }
+        else
+        {
+            list_node *aux;
+            aux = l->head;
+            while (aux->next != NULL)
+            {
+                aux = aux->next;
+            }
+            aux->next = node;
+        }
+        return SUCCESS;
     }
 }

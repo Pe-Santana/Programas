@@ -1,7 +1,7 @@
 #define SUCCESS 0
 #define INVALID_NULL_POINTER -1
 #define SUCCESS -2
-#define SUCCESS -3
+#define OUT_OF_MEMORY -3
 #define ELEM_NOT_FOUND -4
 
 
