@@ -352,7 +352,7 @@ int list_find_pos(TLinkedList *l, int pos, aluno *a)
         auxP = auxP->next;
         if (auxP == NULL && i < pos - 1)
         {
-            return OUT_OF_RANGE;
+            return ELEM_NOT_FOUND;
         }
     }
     *a = auxP->data;
@@ -387,17 +387,13 @@ int list_find_mat(TLinkedList *l, int mat, aluno *a)
     }
     if (mat == auxP->data.matricula)
     {
-        auxA->next = auxP->next;
-
-        free(auxP);
+        *a = auxP->data;
 
         return SUCCESS;
     }
     if (auxP->next == NULL && mat == auxP->data.matricula)
     {
-        auxA->next = auxP->next;
-
-        free(auxP);
+        *a = auxP->data;
 
         return SUCCESS;
     }
