@@ -21,13 +21,34 @@ int main()
         {1170, "Vanessa da Cidade", 10, 6, 9},
         {1680, "Silvio Santos Junior", 7, 9, 9}};
 
-    list_push_front(faculdade, A[1]);
+    list_push_front(faculdade, A[0]);
+    list_push_back(faculdade,A[1]);
+    list_push_back(faculdade,A[3]);
+    list_push_back(faculdade,A[2]);
+    list_insert(faculdade,2,B[0]);
+
+
+    //Tamanho da lista:
+    int size;
+    size = list_size(faculdade);
 
     
-    int aux;
-    aux = list_pop_front(faculdade);
+    //imprime a lista:
+    list_print_forward(faculdade);
+    
+    
+    printf("A lista reversa e:"); 
+    list_print_reverse(faculdade);
 
-    printf("%i", aux); 
+    //apaga elementos da lista  
+    list_pop_front(faculdade);
+    list_pop_back(faculdade);
+    list_erase(faculdade,1);
+
+    //imprime a lista:
+    list_print_forward(faculdade);
+
+
     list_free(faculdade);
 /*
 */

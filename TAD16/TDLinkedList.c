@@ -282,6 +282,15 @@ int list_erase(TDLinkedList *l, int pos)
     {
         int cont = 1;
         DLNode *aux;
+     
+        if (l->size == 1)
+        {
+            aux = l->begin;
+            l->begin = NULL;
+            l->end = NULL;
+            free(aux);
+            l->size--;
+        }
 
         aux = l->begin;
         while (cont != pos && aux != NULL)
@@ -302,4 +311,171 @@ int list_erase(TDLinkedList *l, int pos)
         }
     }
     return SUCCESS;
+}
+
+int list_find_pos(TDLinkedList *l, int pos, aluno *a)
+{
+    if (l == NULL)
+    {
+        return INVALID_NULL_POINTER;
+    }
+    DLNode *auxP, *auxA;
+
+    auxP = l->begin;
+    auxA = l->begin;
+
+    if (pos == 1)
+    {
+        *a = l->begin->data;
+        return SUCCESS;
+    }
+
+    for (int i = 1; i < pos; i++)
+    {
+        auxA = auxP;
+        auxP = auxP->next;
+        if (auxP == NULL && i < pos - 1)
+        {
+            return ELEM_NOT_FOUND;
+        }
+    }
+    *a = auxP->data;
+    return SUCCESS;
+}
+
+int list_find_mat(TDLinkedList *l, int mat, aluno *a)
+{
+    if (l == NULL)
+    {
+        return INVALID_NULL_POINTER;
+    }
+    DLNode *auxP, *auxA;
+
+    auxP = l->begin;
+    auxA = l->begin;
+
+    if (l->begin->data.matricula == mat)
+    {
+        *a = l->begin->data;
+        return SUCCESS;
+    }
+    while (auxP->next != NULL && mat != auxP->data.matricula)
+    {
+        auxA = auxP;
+        auxP = auxP->next;
+    }
+
+    if (auxP->next == NULL && mat != auxP->data.matricula)
+    {
+        return ELEM_NOT_FOUND;
+    }
+    if (mat == auxP->data.matricula)
+    {
+        *a = auxP->data;
+
+        return SUCCESS;
+    }
+    if (auxP->next == NULL && mat == auxP->data.matricula)
+    {
+        *a = auxP->data;
+
+        return SUCCESS;
+    }
+}
+
+int list_front(TDLinkedList *l, aluno *a)
+{
+    if (l == NULL)
+    {
+        return INVALID_NULL_POINTER;
+    }
+    *a = l->begin->data;
+    return SUCCESS;
+}
+
+int list_back(TDLinkedList *l, aluno *a)
+{
+
+    if (l == NULL)
+    {
+        return INVALID_NULL_POINTER;
+    }
+    *a = l->end->data;
+    return SUCCESS;  
+   
+    
+}
+
+int list_get_pos(TDLinkedList *l, int mat, int *pos)
+{
+
+    if (l == NULL)
+    {
+        return INVALID_NULL_POINTER;
+    }
+    if (l->begin == NULL)
+    {
+        return ELEM_NOT_FOUND;
+    }
+    
+    DLNode *aux;
+    int acum;
+
+    aux = l->begin;
+    acum = 1;
+    while (mat != aux->data.matricula && aux->next != NULL)
+    {
+        aux = aux->next;
+        acum++;
+    }
+    if (aux->next == NULL && mat != aux->data.matricula)
+    {
+        return ELEM_NOT_FOUND;
+    }
+    else
+    {
+        *pos = acum;
+        return SUCCESS;
+    }
+    
+}
+
+int list_print_forward(TDLinkedList *l)
+{
+    if (l == NULL)
+        return INVALID_NULL_POINTER;
+    DLNode *aux;
+    aux = l->begin;
+    printf("\nImprimindo a lista\n");
+
+    while (aux != NULL)
+    {
+        printf("\n------------------\n");
+        printf("Matricula: %d\n", aux->data.matricula);
+        printf("Nome: %s\n", aux->data.nome);
+        printf("Notas: %.1f; %.1f; %.1f;\n", aux->data.n1, aux->data.n2, aux->data.n3);
+
+        aux = aux->next;
+    }
+    printf("\nFim da lista \n");
+}
+
+int list_print_reverse(TDLinkedList *l)
+{
+    if (l == NULL)
+        return INVALID_NULL_POINTER;
+    DLNode *aux;
+    aux = l->end;
+    printf("\nImprimindo a lista - reverso\n");
+
+    while (aux != NULL)
+    {
+        printf("\n------------------\n");
+        printf("Matricula: %d\n", aux->data.matricula);
+        printf("Nome: %s\n", aux->data.nome);
+        printf("Notas: %.1f; %.1f; %.1f;\n", aux->data.n1, aux->data.n2, aux->data.n3);
+
+        aux = aux->prev;
+    }
+    printf("\nFim da lista \n");
 }

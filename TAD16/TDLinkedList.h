@@ -35,4 +35,16 @@ int list_pop_back(TDLinkedList *l);
 
 int list_erase(TDLinkedList *l, int pos);
 
+int list_find_pos(TDLinkedList *l, int pos, aluno *a);
 
+int list_find_mat(TDLinkedList *l, int mat, aluno *a);
+
+int list_front(TDLinkedList *l, aluno *a);
+
+int list_back(TDLinkedList *l, aluno *a);
+
+int list_get_pos(TDLinkedList *l, int mat, int *pos);
+
+int list_print_forward(TDLinkedList *l);
+
+int list_print_reverse(TDLinkedList *l);
