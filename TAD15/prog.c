@@ -71,8 +71,39 @@ int main()
 
     list_find_pos(faculdade,pos,&find);
 
-    printf("\n%i  %s\n\nN1:%.1f | N1:%.1f | nN1:%.1f",find.matricula,find.nome,find.n1,find.n2,find.n3);
+    printf("\n%i  %s\n\nN1:%.1f | N1:%.1f | N1:%.1f\n",find.matricula,find.nome,find.n1,find.n2,find.n3);
+    
+    //encontra pela matrícula:
+    printf ("\nIndique a matricula do aluno a ser encontrado: ");
+    scanf ("%i",&pos);
 
+    list_find_mat(faculdade,pos,&find);
+
+    printf("\n%i  %s\n\nN1:%.1f | N1:%.1f | N1:%.1f\n",find.matricula,find.nome,find.n1,find.n2,find.n3);
+
+    //Mostra o primeiro elemento da lista:
+
+    list_front(faculdade,&find);
+    
+    printf ("\nO primeiro elemento da lista e: ");
+    printf("\n%i  %s\n\nN1:%.1f | N1:%.1f | N1:%.1f\n",find.matricula,find.nome,find.n1,find.n2,find.n3);
+
+    //Mostra o ultimo elemento da lista:
+
+    list_back(faculdade,&find);
+    
+    printf ("\nO ultimo elemento da lista e: ");
+    printf("\n%i  %s\n\nN1:%.1f | N1:%.1f | N1:%.1f\n",find.matricula,find.nome,find.n1,find.n2,find.n3);
+
+    //Indica a posição para certa matrícula:
+    int posC;
+    
+    printf ("\nIndique a matricula do aluno para indentificar a posicao: ");
+    scanf ("%i",&pos);
+    
+    list_get_pos(faculdade,pos,&posC);
+
+    printf("A posicao para essa matricula e: %i",posC);
     //liberação da memoria;
     list_free(faculdade);
 }

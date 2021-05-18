@@ -150,6 +150,49 @@ int list_insert(TLinkedList *l, int pos, aluno a)
         }
     }
 }
+
+int list_insert_sorted(TLinkedList *l, aluno *a)
+{
+
+    if (l == NULL)
+    {
+        return INVALID_NULL_POINTER;
+    }
+    else
+    {
+
+        list_node *node;
+        node = malloc(sizeof(list_node));
+
+        if (node == NULL)
+        {
+            return OUT_OF_MEMORY;
+        }
+
+        list_node *auxP, *auxA;
+
+        auxA = NULL;
+        auxP = l->head;
+
+        while (auxP != NULL && node->data.matricula > auxP->data.matricula)
+        {
+            auxA = auxP;
+            auxP = auxP->next;
+        }
+        if (auxA == NULL)
+        {
+            node->next = auxP;
+            l->head = node;
+        }
+        else
+        {
+            auxA->next = node;
+            node->next = auxP;
+        }
+        return SUCCESS;
+    }
+}
+
 int list_size(TLinkedList *l)
 {
 
@@ -397,4 +440,70 @@ int list_find_mat(TLinkedList *l, int mat, aluno *a)
 
         return SUCCESS;
     }
+}
+
+int list_front(TLinkedList *l, aluno *a)
+{
+    if (l == NULL)
+    {
+        return INVALID_NULL_POINTER;
+    }
+    *a = l->head->data;
+    return SUCCESS;
+}
+
+int list_back(TLinkedList *l, aluno *a)
+{
+
+    if (l == NULL)
+    {
+        return INVALID_NULL_POINTER;
+    }else
+    {
+        list_node *aux;
+        aux = l->head;
+        while (aux->next != NULL)
+        {
+            aux = aux->next;
+        }
+        *a = aux->data;
+
+        return SUCCESS;
+        
+    }
+    
+}
+
+int list_get_pos(TLinkedList *l, int mat, int *pos)
+{
+
+    if (l == NULL)
+    {
+        return INVALID_NULL_POINTER;
+    }
+    if (l->head == NULL)
+    {
+        return ELEM_NOT_FOUND;
+    }
+    
+    list_node *aux;
+    int acum;
+
+    aux = l->head;
+    acum = 1;
+    while (mat != aux->data.matricula && aux->next != NULL)
+    {
+        aux = aux->next;
+        acum++;
+    }
+    if (aux->next == NULL && mat != aux->data.matricula)
+    {
+        return ELEM_NOT_FOUND;
+    }
+    else
+    {
+        *pos = acum;
+        return SUCCESS;
+    }
+    
 }

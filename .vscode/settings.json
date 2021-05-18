@@ -5,6 +5,7 @@
         "tmat2d.h": "c",
         "stdlib.h": "c",
         "tlist.h": "c",
-        "math.h": "c"
+        "math.h": "c",
+        "tdlinkedlist.h": "c"
     }
 }

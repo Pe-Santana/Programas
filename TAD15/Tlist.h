@@ -28,6 +28,8 @@ int list_push_back(TLinkedList *l, aluno a);
 
 int list_insert(TLinkedList *l, int pos, aluno a);
 
+int list_insert_sorted(TLinkedList *l, aluno *a);
+
 int list_size(TLinkedList *l);
 
 int list_print(TLinkedList *l);
@@ -43,3 +45,10 @@ int list_erase_pos(TLinkedList *l, int pos);
 int list_find_pos(TLinkedList *l, int pos, aluno *a); 
 
 int list_find_mat(TLinkedList *l, int mat, aluno *a);
+
+int list_front(TLinkedList *l,  aluno *a);
+
+int list_back(TLinkedList *l, aluno *a);
+
+int list_get_pos(TLinkedList *l, int mat, int *pos);
+
