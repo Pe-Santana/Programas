@@ -23,10 +23,12 @@ int main()
 
     list_push_front(faculdade, A[1]);
 
-    list_pop_front(faculdade);
-/*
+    
+    int aux;
+    aux = list_pop_front(faculdade);
 
     printf("%i", aux); 
     list_free(faculdade);
+/*
 */
 }

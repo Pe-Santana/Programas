@@ -28,7 +28,7 @@ TDLinkedList *list_create()
     if (list != NULL)
     {
         list->begin = NULL;
-        list->end = NULL;
+        list->end = list->begin;
         list->size = 0;
     }
     return list;
@@ -66,15 +66,13 @@ int list_push_front(TDLinkedList *l, aluno a)
         DLNode *node;
         node = malloc(sizeof(DLNode));
 
-        node->data = a;
-        node->next = l->begin;
-        node->prev = NULL;
-
         if (node == NULL)
         {
             return OUT_OF_MEMORY;
         }
-
+        node->data = a;
+        node->next = l->begin;
+        node->prev = NULL;
 
         if (l->begin == NULL)
         {
@@ -216,15 +214,34 @@ int list_pop_front(TDLinkedList *l)
     {
         return INVALID_NULL_POINTER;
     }
+    if (l->begin == NULL)
+    {
+        return ELEM_NOT_FOUND;
+    }
 
-    DLNode *aux;
+    else
+    {
+        DLNode *aux;
 
-    aux = l->begin;
-    l->begin = l->begin->next;
-    l->begin->prev = NULL;
-    free(aux);
-    l->size--;
-    return SUCCESS;
+        if (l->size == 1)
+        {
+            aux = l->begin;
+            l->begin = NULL;
+            l->end = NULL;
+            free(aux);
+            l->size--;
+        }
+        else
+        {
+            aux = l->begin;
+            l->begin = l->begin->next;
+            l->begin->prev = NULL;
+            free(aux);
+            l->size--;
+        }
+
+        return SUCCESS;
+    }
 }
 
 int list_pop_back(TDLinkedList *l)
@@ -253,7 +270,6 @@ int list_erase(TDLinkedList *l, int pos)
         return INVALID_NULL_POINTER;
     }
 
-
     if (pos == 1)
     {
         list_pop_front(l);
@@ -268,7 +284,7 @@ int list_erase(TDLinkedList *l, int pos)
         DLNode *aux;
 
         aux = l->begin;
-        while (cont != pos && aux !=NULL)
+        while (cont != pos && aux != NULL)
         {
             aux = aux->next;
             cont++;
@@ -283,10 +299,7 @@ int list_erase(TDLinkedList *l, int pos)
             aux->next->prev = aux->prev;
             free(aux);
             l->size--;
-
         }
-        
     }
     return SUCCESS;
-    
 }
