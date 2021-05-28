@@ -85,8 +85,3 @@ campo(Chave,Nome,Tipo) -->
     [label([for(Chave), class('form-label')],Nome),
         input([type(Tipo),class('form-control'),
             id(Chave), name(Nome)])])).
-
-
-
-
-
