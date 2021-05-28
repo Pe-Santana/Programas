@@ -1,0 +1,70 @@
+<form action="action_page.php">
+  <div class="container">
+    <h1>Registro de Usuario</h1>
+    <p>Informe os dados para registro.</p>
+
+    <hr>
+
+    <label><b>Identidade</b></label><br>
+    <input type="number" name="pk_id_usuario"><br><br>
+
+    <label><b>Nome Completo</b></label><br>
+    <input type="text" name="usu_name"><br><br>
+
+    <label></label><b>Email</b></label><br>
+    <input type="text" name="email" id="usu_email" required><br><br>
+
+    <label></label><b>Data de Nascimento</b></label><br>
+    <input type="date" name="data" id="usu_data_nascimento" required><br><br>
+
+
+    <label></label><b>Sexo</b></label><br>
+      
+      <select>
+        
+        <option value="0">Sexo</option>
+        <option value="1">Masculino</option>
+        <option value="2">Feminino</option>
+        <option value="3">Outro</option>
+      </select><br><br>
+
+    <label><b>CPF</b></label><br>
+    <input type="text" name="usu_cpf"><br><br>
+  
+    <label><b>CEP</b></label><br>
+    <input type="text" name="usu_cep"><br><br>
+
+    <label><b>Bairro</b></label><br>
+    <input type="text" name="usu_bairro"><br><br>
+
+    <label><b>Cidade</b></label><br>
+    <input type="text" name="usu_cidade"><br><br>
+
+    <label><b>Estado ID</b></label><br>
+    <input type="number" name="estados_id_estados"><br><br>
+    
+    <label><b>Telefone</b></label><br>
+    <input type="text" name="usu_telefone"><br><br>
+
+    <label><b>Login</b></label><br>
+    <input type="text" name="usu_login"><br><br>
+
+    <label><b>Senha</b></label><br>
+    <input type="text" name="usu_senha"><br><br>
+
+    <label><b>Privelegio</b></label><br>
+    <input type="text" name="usu_privilegio" maxlength="1" ><br><br>
+
+    <label><b>Primeiro Acesso</b></label><br>
+    <input type="number" name="usu_primeiro_acesso" size="1" ><br><br>
+
+    <label><b>Ativo</b></label><br>
+    <input type="number" name="usu_ativo" size="1" ><br><br>
+
+
+  </div>
+
+
+
+  <button type="submit" class="registerbtn">Registrar</button>
+  </div>
