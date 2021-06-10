@@ -5,6 +5,8 @@
    ).
 
 :- use_module(library(persistency)).
+:- use_module(chave,[]).
+
 :- persistent
    usuarios( idusuarios:nonneg,
                     usuario:atom,
@@ -12,22 +14,22 @@
                     senha:atom,
                     confirmaSenha:atom).
 
-:- initialization(db_attach('tbl_usuarios.pl', [])).
+:- initialization( at_halt(db_sync(gc(always))) ).
 
+carrega_tab(ArqTabela):- db_attach(ArqTabela,[]).
 
 insere(Iduser,User,Nome,Senha,Confirmasenha):-
     chave:pk(usuario,Iduser);
     with_mutex(usuarios,
-               assert_usuarios(User,Nome,Senha,Confirmasenha)).
+               assert_usuarios(Iduser,User,Nome,Senha,Confirmasenha)).
 
-/* remove(Iduser):-
-    with_mutex(chaveUsuario,
-               retract_chaveUsuario(Iduser,User,Nome,Senha,Confirmasenha)).
+ remove(Iduser):-
+    with_mutex(usuarios,
+               retract_usuarios(Iduser,_,_,_,_)).
 
 atualiza((Iduser,User,Nome,Senha,Confirmasenha)):-
-    with_mutex(chaveUsuario,
-               ( retractall_chaveUsuario(Iduser,User,Nome,Senha,Confirmasenha),
-                 assert_chaveUsuario(Iduser,User,Nome,Senha,Confirmasenha)) ).
- */
-sincroniza :-
-    db_sync(gc(always)).
+    with_mutex(usuarios,
+               ( retractall_usuarios(Iduser,_,_,_,_),
+                 assert_usuarios(Iduser,User,Nome,Senha,Confirmasenha)) ).
+
+

@@ -46,5 +46,3 @@ int list_back(TCircList *l, aluno *a);
 int list_get_pos(TCircList *l, int mat, int *pos);
 
 int list_print_forward(TCircList *l);
-
-int list_print_reverse(TCircList *l);

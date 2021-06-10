@@ -25,7 +25,9 @@ int main()
     list_push_back(faculdade,A[3]);
     list_push_front(faculdade,A[1]);
     list_push_front(faculdade,A[0]);
-    list_insert(faculdade,4,B[0]);
+    list_insert(faculdade,4,B[0]); 
+    list_push_back(faculdade,B[1]);
+    list_push_back(faculdade,B[2]);
 
     list_print_forward(faculdade);
 
@@ -33,6 +35,15 @@ int main()
     tamanho = list_size(faculdade);
 
     printf("O tamanho da lista circular eh: %i",tamanho);
+
+    list_pop_front(faculdade);
+    list_pop_back(faculdade);
+    list_erase(faculdade,3);
+
+
+    
+    list_print_forward(faculdade);
+
 
     list_free(faculdade);
 

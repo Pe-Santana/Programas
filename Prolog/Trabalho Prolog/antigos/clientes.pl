@@ -5,6 +5,8 @@
    ).
    
 :- use_module(library(persistency)).
+:- use_module(chave,[]).
+
 :- persistent
    clientes( idClientes:nonneg,
                 razaoSocial:atom,
@@ -26,24 +28,23 @@
                 funcao:atom               
                 ).
 
-:- initialization(db_attach('tbl_cliente.pl', [])).
+:- initialization( at_halt(db_sync(gc(always))) ).
 
+carrega_tab(ArqTabela):- db_attach(ArqTabela,[]).
 
 insere(IdClientes,RazaoSocial,Identificacao,Classificacao,TipoPessoa,CnpjCpf,InscricaoEstadual,
          InscricaoMunicipal,Endereco,Bairro,Municipio,Cep,Uf,Telefone,Email,NomeTitular,Cpf,Funcao):-
     chave:pk(idClientes,IdClientes),
     with_mutex(clientes,
-               assert_clientes(RazaoSocial,Identificacao,Classificacao,TipoPessoa,CnpjCpf,InscricaoEstadual,
+               assert_clientes(IdClientes,RazaoSocial,Identificacao,Classificacao,TipoPessoa,CnpjCpf,InscricaoEstadual,
          InscricaoMunicipal,Endereco,Bairro,Municipio,Cep,Uf,Telefone,Email,NomeTitular,Cpf,Funcao)).
 
-/* remove(Iduser):-
-    with_mutex(chaveUsuario,
-               retract_chaveUsuario(Iduser,User,Nome,Senha,Confirmasenha)).
+remove(IdClientes):-
+    with_mutex(clientes,
+               retract_clientes(IdClientes,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_)).
 
 atualiza((Iduser,User,Nome,Senha,Confirmasenha)):-
-    with_mutex(chaveUsuario,
-               ( retractall_chaveUsuario(Iduser,User,Nome,Senha,Confirmasenha),
-                 assert_chaveUsuario(Iduser,User,Nome,Senha,Confirmasenha)) ).
- */
-sincroniza :-
-    db_sync(gc(always)).
+    with_mutex(clientes,
+               ( retract_clientes(IdClientes,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_),
+                 assert_clientes(IdClientes,RazaoSocial,Identificacao,Classificacao,TipoPessoa,CnpjCpf,InscricaoEstadual,
+         InscricaoMunicipal,Endereco,Bairro,Municipio,Cep,Uf,Telefone,Email,NomeTitular,Cpf,Funcao)) ).
