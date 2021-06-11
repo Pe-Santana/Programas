@@ -40,8 +40,30 @@ int main()
     list_pop_back(faculdade);
     list_erase(faculdade,3);
 
+    aluno estudante;
 
+    list_find_pos(faculdade,2,&estudante);
     
+    printf("\n\nA matricula do aluno 2 eh : %i",estudante.matricula);
+
+    list_find_mat(faculdade,1432,&estudante);
+    
+    printf("\n\nO nome do aluno de matricula 1432 eh : %s",estudante.nome);
+
+    list_front(faculdade,&estudante);
+    
+    printf("\n\nO nome do primeiro aluno eh : %s",estudante.nome);
+    
+    list_back(faculdade,&estudante);
+    
+    printf("\n\nO nome do ultimo aluno eh : %s",estudante.nome);
+
+    int posit;
+
+    list_get_pos(faculdade,1224,&posit);
+       
+    printf("\n\nA posicao do aluno de matricula 1224 eh : %i",posit);
+
     list_print_forward(faculdade);
 
 

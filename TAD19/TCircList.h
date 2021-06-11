@@ -14,6 +14,7 @@ typedef struct aluno
 }aluno;
 
 typedef struct TCircList TCircList;
+typedef struct CLNode CLNode;
 
 //FUNCOES:
 

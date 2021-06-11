@@ -327,5 +327,79 @@ int list_find_pos(TCircList *l, int pos, aluno *a)
     }
     *a = aux->data;
     return SUCCESS;
+}
+
+int list_find_mat(TCircList *l, int mat, aluno *a)
+{
+
+    if (l == NULL)
+    {
+        return INVALID_NULL_POINTER;
+    }
+    CLNode *aux;
+    aux = l->end->next;
+
+    while (aux->data.matricula != mat)
+    {
+        aux = aux->next;
+        if (aux == l->end->next)
+        {
+            return ELEM_NOT_FOUND;
+        }
+    }
+    *a = aux->data;
+
+    return SUCCESS;
+}
+
+int list_front(TCircList *l, aluno *a)
+{
+
+    if (l == NULL)
+    {
+        return INVALID_NULL_POINTER;
+    }
+    CLNode *aux;
+    aux = l->end->next;
+    *a = aux->data;
+    return SUCCESS;
+}
+
+int list_back(TCircList *l, aluno *a)
+{
+
+    if (l == NULL)
+    {
+        return INVALID_NULL_POINTER;
+    }
+    CLNode *aux;
+    aux = l->end;
+    *a = aux->data;
+    return SUCCESS;
+}
+
+int list_get_pos(TCircList *l, int mat, int *pos){
+
+    if (l == NULL)
+    {
+        return INVALID_NULL_POINTER;
+    }
+    
+    CLNode *aux;
+    aux = l->end;
+    for (int i = 0; i < list_size(l)+1; i++)
+    {
+        aux = aux->next;
+        if (aux->data.matricula == mat)
+        {
+            *pos = i;
+
+            return SUCCESS;
+        }
+    }
+    
+
+    return ELEM_NOT_FOUND;
+
 
 }
